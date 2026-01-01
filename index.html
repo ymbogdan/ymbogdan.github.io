@@ -22,7 +22,8 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
         
-        body { font-family: 'Inter', sans-serif; cursor: none; background-color: #030005; overflow-x: hidden; }
+        /* Removed cursor: none */
+        body { font-family: 'Inter', sans-serif; background-color: #030005; overflow-x: hidden; }
         
         .will-change-transform { will-change: transform; }
 
@@ -197,75 +198,8 @@
           );
         };
 
-        // VISIT COUNTER - FIXED & ALWAYS VISIBLE
-        const VisitCounter = () => {
-          const [visits, setVisits] = useState(1);
-
-          useEffect(() => {
-            const fetchVisits = async () => {
-              try {
-                const res = await fetch(`https://api.counterapi.dev/v1/ymbogdan.space/visits/up`);
-                const data = await res.json();
-                if (data && data.count) setVisits(data.count);
-              } catch (e) {
-                console.warn("Counter API error, using fallback:", e);
-                setVisits(1240);
-              }
-            };
-            fetchVisits();
-          }, []);
-
-          return (
-            <div className="fixed top-6 right-6 z-[9999] group cursor-default">
-                <div className="relative bg-black/60 border border-green-500/30 rounded-2xl backdrop-blur-xl px-5 py-3 flex items-center gap-4 transition-all duration-300 ease-out hover:border-green-500/60 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)] hover:scale-105">
-                    <div className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-[9px] font-mono text-gray-400 uppercase tracking-widest leading-none mb-1 group-hover:text-gray-300 transition-colors">Visite Totali</span>
-                        <span className="text-sm font-bold text-white font-['Orbitron'] tracking-wide leading-none">{visits.toLocaleString()}</span>
-                    </div>
-                </div>
-            </div>
-          );
-        };
-
-        const CustomCursor = () => {
-          const [pos, setPos] = useState({ x: -100, y: -100 });
-          const [hovered, setHovered] = useState(false);
-
-          useEffect(() => {
-            const move = (e) => setPos({ x: e.clientX, y: e.clientY });
-            const addHover = () => setHovered(true);
-            const removeHover = () => setHovered(false);
-
-            window.addEventListener('mousemove', move);
-            
-            const applyListeners = () => {
-                const clickables = document.querySelectorAll('a, button, input, textarea, .cursor-pointer');
-                clickables.forEach(el => { el.addEventListener('mouseenter', addHover); el.addEventListener('mouseleave', removeHover); });
-            };
-
-            applyListeners();
-            const observer = new MutationObserver(applyListeners);
-            observer.observe(document.body, { childList: true, subtree: true });
-            return () => { window.removeEventListener('mousemove', moveCursor); observer.disconnect(); };
-          }, []);
-
-          return (
-            <React.Fragment>
-              <div 
-                className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[200] mix-blend-difference will-change-transform" 
-                style={{ transform: `translate3d(${pos.x}px, ${pos.y}px, 0)` }} 
-              />
-              <div 
-                className={`fixed top-0 left-0 border border-white/50 rounded-full pointer-events-none z-[199] transition-all duration-300 ease-out mix-blend-difference will-change-transform ${hovered ? 'w-12 h-12 bg-white/20' : 'w-8 h-8'}`}
-                style={{ transform: `translate3d(${pos.x - (hovered ? 24 : 16)}px, ${pos.y - (hovered ? 24 : 16)}px, 0)` }}
-              />
-            </React.Fragment>
-          );
-        };
+        // --- VisitCounter COMPONENT REMOVED ---
+        // --- CustomCursor COMPONENT REMOVED ---
 
         const NebulaBackground = () => (
           <div className="fixed inset-0 z-0 overflow-hidden bg-[#050505] pointer-events-none">
@@ -398,13 +332,13 @@
                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[100px] rounded-full animate-pulse-slow" />
                 <div className="flex items-start justify-between relative z-10">
                   <div className="w-20 h-20 rounded-2xl overflow-hidden border border-white/10 bg-black/50 shadow-inner group-hover:scale-105 transition-transform duration-500 animate-float">
-                     <img src="https://cdn.discordapp.com/attachments/1244400728223776828/1450113962128445602/Screenshot_2025-05-28_150107.png?ex=69454fde&is=6943fe5e&hm=8442af0afc74bdab08c2d99aea10bf3992a8167eb198e23ba7ef3d3d30b233ed&" alt="Logo" className="w-full h-full object-contain p-2 filter brightness-110" />
+                      <img src="https://cdn.discordapp.com/attachments/1244400728223776828/1450113962128445602/Screenshot_2025-05-28_150107.png?ex=69454fde&is=6943fe5e&hm=8442af0afc74bdab08c2d99aea10bf3992a8167eb198e23ba7ef3d3d30b233ed&" alt="Logo" className="w-full h-full object-contain p-2 filter brightness-110" />
                   </div>
                   <div className="flex flex-col items-end gap-1">
-                     <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/20 bg-green-500/5 text-green-400 text-[10px] font-mono tracking-widest uppercase">
-                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                      Founder @ BlitzNetwork
-                    </div>
+                      <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/20 bg-green-500/5 text-green-400 text-[10px] font-mono tracking-widest uppercase">
+                       <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                       Founder @ BlitzNetwork
+                     </div>
                     <span className="text-[10px] text-gray-500 font-mono">JAVA_DEV_OPS</span>
                   </div>
                 </div>
@@ -423,8 +357,8 @@
                   ))}
                 </div>
                 <div className="mt-auto pt-4 relative h-32 overflow-hidden opacity-30 pointer-events-none">
-                     <div className="absolute inset-0 border border-white/20 rounded-full animate-[spin_10s_linear_infinite]" />
-                     <div className="absolute inset-2 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+                      <div className="absolute inset-0 border border-white/20 rounded-full animate-[spin_10s_linear_infinite]" />
+                      <div className="absolute inset-2 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
                 </div>
               </BentoCard>
 
@@ -444,17 +378,17 @@
                 <BentoCard key={proj.id} href={proj.link} className="group overflow-hidden" glowColor={proj.color}>
                   <div className="absolute top-0 right-0 w-32 h-32 blur-[80px] opacity-10 group-hover:opacity-30 transition-opacity duration-500" style={{ background: proj.color }} />
                   <div className="flex justify-between items-start mb-3">
-                     <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2">
                         <proj.icon className="w-4 h-4 text-white/70" />
                         <span className="px-2 py-0.5 rounded-full bg-white/5 text-[10px] font-mono text-gray-400 border border-white/5">{proj.category}</span>
-                     </div>
+                      </div>
                     <ExternalLink className="w-3 h-3 text-gray-600 group-hover:text-white transition-colors" />
                   </div>
                   <h3 className="text-lg font-bold text-white mb-1 group-hover:translate-x-1 transition-transform duration-300">{proj.title}</h3>
                   <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-4">{proj.description}</p>
                   <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
-                     <div className="flex items-center gap-2 text-[10px] text-gray-500 font-mono"><Terminal className="w-3 h-3" /><span>{proj.tech}</span></div>
-                     <div>{proj.isServer && <ServerStatus ip={proj.serverIp} />}{proj.isDiscord && <DiscordStatus inviteCode={proj.discordInvite} />}</div>
+                      <div className="flex items-center gap-2 text-[10px] text-gray-500 font-mono"><Terminal className="w-3 h-3" /><span>{proj.tech}</span></div>
+                      <div>{proj.isServer && <ServerStatus ip={proj.serverIp} />}{proj.isDiscord && <DiscordStatus inviteCode={proj.discordInvite} />}</div>
                   </div>
                 </BentoCard>
               ))}
@@ -464,10 +398,10 @@
                 <div className="flex items-center justify-between w-full h-full px-4"> 
                     <div className="z-10 relative">
                       <div className="flex items-center gap-3 mb-2">
-                         <div className="p-2 bg-yellow-500/20 rounded-lg"><Briefcase className="w-5 h-5 text-yellow-400 animate-pulse" /></div>
-                         <h3 className="text-2xl font-bold text-white">Ti serve un progetto custom?</h3>
-                      </div>
-                      <p className="text-gray-400 text-sm">Contattami per preventivi, sviluppo e infrastrutture.</p>
+                          <div className="p-2 bg-yellow-500/20 rounded-lg"><Briefcase className="w-5 h-5 text-yellow-400 animate-pulse" /></div>
+                          <h3 className="text-2xl font-bold text-white">Ti serve un progetto custom?</h3>
+                       </div>
+                       <p className="text-gray-400 text-sm">Contattami per preventivi, sviluppo e infrastrutture.</p>
                     </div>
                     <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-white/10 flex-shrink-0 ml-4"><ArrowRight className="w-5 h-5" /></div>
                 </div>
@@ -524,12 +458,11 @@
           const [page, setPage] = useState('home');
           const [booted, setBooted] = useState(false);
           return (
-            <div className="min-h-screen bg-black text-gray-200 font-sans selection:bg-purple-500/30 selection:text-white overflow-x-hidden cursor-none">
+            <div className="min-h-screen bg-black text-gray-200 font-sans selection:bg-purple-500/30 selection:text-white overflow-x-hidden">
               {!booted && <BootSequence onComplete={() => setBooted(true)} />}
               
-              <VisitCounter />
+              {/* Removed <VisitCounter /> */}
               
-              <CustomCursor />
               <NebulaBackground />
               <StarField />
               <ShootingStars />
