@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ymbogdan's space</title>
+    <title>ymbogdan's Space</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -85,7 +85,7 @@
             Github, MessageCircle, Box, ExternalLink, Code, Database, Server, Zap, 
             ChevronDown, Rocket, Mail, User, Send, ArrowLeft, Layers, Cpu, Globe, 
             Shield, Terminal, ArrowRight, Star, MousePointer2, Users, Gamepad2, 
-            Briefcase, Copy, Check, Eye, Crown, ShieldCheck, Sword, ShoppingBag, Download, X, Hammer
+            Briefcase, Copy, Check, Eye, Crown, ShieldCheck, Sword, ShoppingBag, Download, X, Hammer, ThumbsUp
         } from 'lucide-react';
 
         // --- DATA ---
@@ -142,6 +142,47 @@
 
         // Resources Data (Placeholder - Attualmente non usato)
         const RESOURCES = [];
+
+        // Vote Sites Data
+        const VOTE_SITES = [
+            { 
+                id: 1, 
+                name: "Minecraft Italia", 
+                url: "https://vota.blitzmc.xyz", 
+                // Uso il dominio ufficiale per l'icona
+                icon: "https://www.google.com/s2/favicons?domain=minecraft-italia.it&sz=64" 
+            },
+            { 
+                id: 2, 
+                name: "Minecraft Servers", 
+                url: "https://minecraftservers.org/server/682576", 
+                icon: "https://www.google.com/s2/favicons?domain=minecraftservers.org&sz=64" 
+            },
+            { 
+                id: 3, 
+                name: "Minecraft Server List", 
+                url: "https://minecraft-server-list.com/server/517323/", 
+                icon: "https://www.google.com/s2/favicons?domain=minecraft-server-list.com&sz=64" 
+            },
+            { 
+                id: 4, 
+                name: "Minecraft ServerList", 
+                url: "https://minecraft-serverlist.com/server/4101", 
+                icon: "https://www.google.com/s2/favicons?domain=minecraft-serverlist.com&sz=64" 
+            },
+            { 
+                id: 5, 
+                name: "Minecraft IP List", 
+                url: "https://www.minecraftiplist.com/server/BlitzMC-39115", 
+                icon: "https://www.google.com/s2/favicons?domain=minecraftiplist.com&sz=64" 
+            },
+            { 
+                id: 6, 
+                name: "Minecraft MP", 
+                url: "https://minecraft-mp.com/server-s353140", 
+                icon: "https://www.google.com/s2/favicons?domain=minecraft-mp.com&sz=64" 
+            }
+        ];
 
         // Dati Staff Experience
         const STAFF_HISTORY = [
@@ -235,27 +276,34 @@
             const scrollRef = useRef(null);
             
             const bootLog = [
-                { text: "Initializing BlitzKernel v6.1.0-blitz-amd64...", delay: 0 },
-                { text: "Loading initial ramdisk...", delay: 100 },
-                { text: "[    0.000000] Linux version 6.1.0 (root@ymbogdan) (gcc version 12.2.0)", delay: 200 },
-                { text: "[    0.004123] Command line: BOOT_IMAGE=/boot/vmlinuz root=UUID=blitz-net ro quiet", delay: 300 },
+                { text: `
+  ____  _ _ _          _   _      _                      _
+ | __ )| (_) |_ ____  | \\ | | ___| |___      _____  _ __| | __
+ |  _ \\| | | __|_  /  |  \\| |/ _ \\ __\\ \\ /\\ / / _ \\| '__| |/ /
+ | |_) | | | |_ / /   | |\\  |  __/ |_ \\ V  V / (_) | |  |   <
+ |____/|_|_|\\__/___|  |_| \\_|\\___|\\__| \\_/\\_/ \\___/|_|  |_|\\_\\
+`, delay: 0, highlight: true, isAscii: true },
+                { text: "Initializing BlitzKernel v6.1.0-blitz-amd64...", delay: 200 },
+                { text: "Loading initial ramdisk...", delay: 250 },
+                { text: "[    0.000000] Linux version 6.1.0 (root@ymbogdan) (gcc version 12.2.0)", delay: 300 },
+                { text: "[    0.004123] Command line: BOOT_IMAGE=/boot/vmlinuz root=UUID=blitz-net ro quiet", delay: 350 },
                 { text: "[    0.154212] Dentry cache hash table entries: 2097152", delay: 400 },
                 { text: "[    0.288193] Inode-cache hash table entries: 1048576", delay: 450 },
-                { text: "[    0.312100] Memory: 16384M/16288M available (12434K kernel code)", delay: 550 },
-                { text: "[ OK ] Mounted root file system.", delay: 800, status: true },
-                { text: "[ OK ] Started Show Plymouth Boot Screen.", delay: 900, status: true },
-                { text: "[ OK ] Reached target Local File Systems.", delay: 1000, status: true },
-                { text: "[ OK ] Starting Network Manager...", delay: 1200, status: true },
-                { text: "[ OK ] Started Network Manager.", delay: 1500, status: true },
-                { text: "[ OK ] Reached target Network.", delay: 1600, status: true },
-                { text: "Starting ymbogdan Space Service...", delay: 1800 },
-                { text: "[ OK ] Started Docker Application Container Engine.", delay: 2100, status: true },
-                { text: "[ OK ] Started BlitzMC Server Daemon.", delay: 2300, status: true },
-                { text: "[ OK ] Started React Renderer Service.", delay: 2500, status: true },
-                { text: "Loading User Interface components...", delay: 2800 },
-                { text: "Decrypting assets...", delay: 3000 },
-                { text: "Welcome to ymbogdan's space.", delay: 3300, highlight: true },
-                { text: "Login successful.", delay: 3600 }
+                { text: "[    0.312100] Memory: 16384M/16288M available (12434K kernel code)", delay: 500 },
+                { text: "[ OK ] Mounted root file system.", delay: 600, status: true },
+                { text: "[ OK ] Started Show Plymouth Boot Screen.", delay: 650, status: true },
+                { text: "[ OK ] Reached target Local File Systems.", delay: 700, status: true },
+                { text: "[ OK ] Starting Network Manager...", delay: 800, status: true },
+                { text: "[ OK ] Started Network Manager.", delay: 900, status: true },
+                { text: "[ OK ] Reached target Network.", delay: 950, status: true },
+                { text: "Starting ymbogdan Space Service...", delay: 1050 },
+                { text: "[ OK ] Started Docker Application Container Engine.", delay: 1150, status: true },
+                { text: "[ OK ] Started BlitzMC Server Daemon.", delay: 1250, status: true },
+                { text: "[ OK ] Started React Renderer Service.", delay: 1350, status: true },
+                { text: "Loading User Interface components...", delay: 1450 },
+                { text: "Decrypting assets...", delay: 1550 },
+                { text: "Welcome to ymbogdan's space.", delay: 1700, highlight: true },
+                { text: "Login successful.", delay: 1900 }
             ];
 
             useEffect(() => {
@@ -285,11 +333,13 @@
                 <div className="fixed inset-0 z-[100] bg-black font-mono text-xs md:text-sm p-4 overflow-hidden flex flex-col justify-start items-start text-left cursor-none">
                     <div ref={scrollRef} className="w-full h-full overflow-y-auto scrollbar-hide flex flex-col justify-start pb-4">
                         {lines.map((line, i) => (
-                            <div key={i} className={`mb-0.5 break-words whitespace-pre-wrap font-mono ${line.highlight ? 'text-purple-400 font-bold' : 'text-gray-300'}`}>
-                                {line.status ? (
-                                    <span className="mr-3 text-green-500 font-bold">[ OK ]</span>
-                                ) : (
-                                    <span className="mr-3 text-gray-500">[{ (i * 0.1234).toFixed(6) }]</span>
+                            <div key={i} className={`mb-0.5 break-words font-mono ${line.isAscii ? 'whitespace-pre text-[8px] md:text-[10px] leading-none text-purple-500 mb-4' : 'whitespace-pre-wrap'} ${line.highlight ? 'text-purple-400 font-bold' : 'text-gray-300'}`}>
+                                {!line.isAscii && (
+                                    line.status ? (
+                                        <span className="mr-3 text-green-500 font-bold">[ OK ]</span>
+                                    ) : (
+                                        <span className="mr-3 text-gray-500">[{ (i * 0.0523).toFixed(6) }]</span>
+                                    )
                                 )}
                                 <span>{line.text}</span>
                             </div>
@@ -393,7 +443,6 @@
         const BentoCard = ({ children, className = "", colSpan = "col-span-1", rowSpan = "row-span-1", href, onClick, bgStyle = "bg-white/5", glowColor = "rgba(255,255,255,0.1)", isBinary = false }) => {
           const cardRef = useRef(null);
           const spotlightRef = useRef(null);
-          // Aumentato ancora per sicurezza
           const [binaryContent] = useState(() => isBinary ? Array.from({ length: 25000 }, () => Math.random() > 0.5 ? '1' : '0').join('') : '');
 
           const handleMouseMove = (e) => {
@@ -405,7 +454,6 @@
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
             
-            // Aggiorna variabili CSS per la maschera binaria
             if (isBinary) {
                 div.style.setProperty('--x', `${mouseX}px`);
                 div.style.setProperty('--y', `${mouseY}px`);
@@ -425,34 +473,34 @@
           const props = href ? { href, target: "_blank", rel: "noopener noreferrer" } : { onClick };
           return (
             <Wrapper {...props} ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`relative rounded-3xl ${bgStyle} border border-white/5 backdrop-blur-xl overflow-hidden group transition-all duration-300 ease-out hover:z-10 hover:border-white/20 cursor-pointer ${colSpan} ${rowSpan} ${className} will-change-transform`}>
-              {/* DECORATIONS (Background) */}
-              <div ref={spotlightRef} className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100" />
-              <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              {/* CONTENT (Z-10) */}
-              <div className="relative h-full w-full p-6 flex flex-col z-10">{children}</div>
-
-              {/* BINARY EFFECT LAYER (Overlay Z-50) */}
+              {/* BINARY EFFECT LAYER (Background Z-0) */}
               {isBinary && (
                   <div 
-                    className="absolute inset-0 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden"
+                    className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden"
                     style={{
                         maskImage: `radial-gradient(150px circle at var(--x, 50%) var(--y, 50%), black, transparent 100%)`,
                         WebkitMaskImage: `radial-gradient(150px circle at var(--x, 50%) var(--y, 50%), black, transparent 100%)`
                     }}
                   >
-                    {/* OVERSCAN: w-[120%] e margini negativi per coprire perfettamente i bordi */}
                     <div className="w-[120%] h-[120%] -ml-4 -mt-4 text-sm font-mono text-blue-400 break-all leading-[0.85rem] select-none tracking-tight shadow-black drop-shadow-md bg-black/40">
                         {binaryContent}
                     </div>
                   </div>
               )}
+
+              {/* DECORATIONS */}
+              <div ref={spotlightRef} className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100 z-0" />
+              <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+              <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+              
+              {/* CONTENT (Foreground Z-10) */}
+              <div className="relative h-full w-full p-6 flex flex-col z-10">{children}</div>
+
             </Wrapper>
           );
         };
 
-        // NEW STAFF CARD COMPONENT WITH ANIMATION
         const StaffCard = ({ exp }) => {
           const cardRef = useRef(null);
           const spotlightRef = useRef(null);
@@ -466,15 +514,12 @@
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
             
-            // Calcolo rotazione
             const rotateX = ((mouseY - height / 2) / height) * -3; 
             const rotateY = ((mouseX - width / 2) / width) * 3;
             
             div.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`;
-            // Glow color dinamico basato sull'esperienza (es. #ffba00)
             const glowColor = exp.glow || "rgba(255,255,255,0.1)";
-            // Convert HEX to RGBA (approximate/simple string replace if format matches or just use as is for gradient)
-            div.style.boxShadow = `0 20px 40px -10px ${glowColor}20`; // Adding alpha roughly
+            div.style.boxShadow = `0 20px 40px -10px ${glowColor}20`; 
             
             if (spotlightRef.current) {
                 spotlightRef.current.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, ${glowColor}40, transparent 40%)`;
@@ -501,7 +546,6 @@
                 
                 <div className="flex items-start justify-between mb-4 relative z-10">
                     <div className="flex items-center gap-4">
-                        {/* LOGO BOX */}
                         <div className={`w-14 h-14 rounded-xl flex items-center justify-center bg-black/40 border border-white/10 overflow-hidden ${exp.color} relative group-hover:scale-105 transition-transform duration-300`}>
                             {exp.logo ? (
                                 <img 
@@ -566,7 +610,7 @@
             </div>
         );
 
-        const BlitzModal = ({ onClose }) => (
+        const BlitzModal = ({ onClose, onSelectVote }) => (
             <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fade-in-up" onClick={onClose}>
                 <div className="bg-[#0f1115] border border-white/10 p-6 rounded-3xl max-w-md w-full shadow-2xl relative overflow-hidden animate-scale-up" onClick={e => e.stopPropagation()}>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#ffba00]/20 blur-[60px] rounded-full pointer-events-none" />
@@ -584,12 +628,70 @@
                             </div>
                             <span className="text-sm font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">Store</span>
                         </a>
+                        
+                        {/* TikTok Button */}
+                        <a href="https://www.tiktok.com/@blitzmcnetwork" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#ffba00]/30 transition-all group">
+                            <div className="w-16 h-16 rounded-full bg-[#ffba00]/10 flex items-center justify-center text-[#ffba00] group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+                                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                                </svg>
+                            </div>
+                            <span className="text-sm font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">TikTok</span>
+                        </a>
+
+                        {/* Vote Us Button */}
+                        <button onClick={onSelectVote} className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#ffba00]/30 transition-all group">
+                            <div className="w-16 h-16 rounded-full bg-[#ffba00]/10 flex items-center justify-center text-[#ffba00] group-hover:scale-110 transition-transform">
+                                <ThumbsUp className="w-8 h-8" />
+                            </div>
+                            <span className="text-sm font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">Vote Us</span>
+                        </button>
                      </div>
                 </div>
             </div>
         );
 
         // --- PAGES ---
+
+        const VotePage = ({ setPage }) => {
+            return (
+                <div className="min-h-screen relative z-10 flex items-center justify-center p-4 animate-fade-in-up py-20">
+                    <div className="w-full max-w-4xl">
+                        <button onClick={() => setPage('home')} className="flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors group text-sm font-mono tracking-wide">
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />TORNA ALLA HOME
+                        </button>
+                        
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-white mb-2 tracking-widest font-['Orbitron']">VOTE BLITZMC</h2>
+                            <p className="text-gray-400">Vota il server ogni giorno per ottenere ricompense esclusive!</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {VOTE_SITES.map((site) => (
+                                <a 
+                                    key={site.id} 
+                                    href={site.url} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-between bg-white/5 border border-white/10 hover:border-[#ffba00]/30 hover:bg-white/10 rounded-2xl p-4 group transition-all duration-300"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        {/* Icona Sito Voto */}
+                                        <div className="w-10 h-10 rounded-lg bg-black/30 flex items-center justify-center border border-white/5 p-1">
+                                            <img src={site.icon} alt={site.name} className="w-full h-full object-contain rounded-md" />
+                                        </div>
+                                        <span className="text-base font-bold text-white group-hover:text-[#ffba00] transition-colors">{site.name}</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-[#ffba00] text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
+                                        VOTA ORA <ExternalLink className="w-3 h-3" />
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
 
         const Home = ({ setPage }) => {
             const [showBbbModal, setShowBbbModal] = useState(false);
@@ -613,7 +715,13 @@
                 )}
 
                 {showBlitzModal && (
-                    <BlitzModal onClose={() => setShowBlitzModal(false)} />
+                    <BlitzModal 
+                        onClose={() => setShowBlitzModal(false)} 
+                        onSelectVote={() => {
+                            setPage('vote');
+                            setShowBlitzModal(false);
+                        }}
+                    />
                 )}
 
                 <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 gap-4 auto-rows-[180px]">
@@ -654,15 +762,38 @@
 
                   {/* 2. Tech Stack (1x2 Vertical) - Added isBinary prop */}
                   <BentoCard isBinary={true} rowSpan="md:row-span-2" className="bg-gradient-to-b from-gray-900/50 to-black/50" glowColor="rgba(100,100,255,0.1)">
-                    <h3 className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-6 flex items-center gap-2"><Cpu className="w-3 h-3 text-blue-400" /> Tech Stack</h3>
-                    <div className="flex flex-wrap gap-2">
+                    
+                    {/* Header 1: TECH STACK */}
+                    <h3 className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <Cpu className="w-3 h-3 text-blue-400" /> Tech Stack
+                    </h3>
+                    
+                    <div className="flex flex-wrap gap-2 mb-8 relative">
                       {['Java', 'Spigot API', 'Velocity', 'Paper', 'SQL', 'Redis', 'Linux', 'BungeeCord'].map((tech) => (
-                        <span key={tech} className="px-3 py-1.5 bg-white/5 border border-white/5 rounded-md text-[10px] text-gray-300 font-mono hover:bg-white/10 hover:border-white/20 transition-colors cursor-default hover:text-white">{tech}</span>
+                        <span key={tech} className="px-3 py-1.5 bg-white/5 border border-white/5 rounded-md text-[10px] text-gray-300 font-mono hover:bg-white/10 hover:border-white/20 transition-colors cursor-default hover:text-white backdrop-blur-sm">{tech}</span>
                       ))}
                     </div>
-                    <div className="mt-auto pt-4 relative h-32 overflow-hidden opacity-30 pointer-events-none">
-                          <div className="absolute inset-0 border border-white/20 rounded-full animate-[spin_10s_linear_infinite]" />
-                          <div className="absolute inset-2 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+                    
+                    {/* PARTNER HOST SECTION */}
+                    <div className="mt-auto relative">
+                        {/* Header 2: PARTNER HOST (Stile identico a Tech Stack) */}
+                        <h3 className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <Server className="w-3 h-3 text-blue-500" /> Partner Host
+                        </h3>
+                        
+                        {/* Box Partner */}
+                        <a href="https://billing.scheggia.cloud/aff.php?aff=7" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-2xl bg-gray-900/80 border border-blue-500/30 hover:border-blue-500/50 hover:bg-gray-800/90 backdrop-blur-md transition-all group shadow-xl shadow-black/40">
+                            <div className="w-12 h-12 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-lg shadow-blue-900/20 flex-shrink-0">
+                                <img src="https://www.google.com/s2/favicons?domain=scheggia.cloud&sz=128" alt="Scheggia Cloud" className="w-full h-full object-contain" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <div className="text-white font-bold text-sm group-hover:text-blue-400 transition-colors truncate">Scheggia Cloud</div>
+                                <div className="text-xs text-gray-400 truncate">High Performance VPS</div>
+                            </div>
+                            <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                                <ExternalLink className="w-4 h-4 text-blue-400 group-hover:text-white transition-colors" />
+                            </div>
+                        </a>
                     </div>
                   </BentoCard>
 
@@ -845,6 +976,7 @@
                   {page === 'contact' && <Contact setPage={setPage} />}
                   {page === 'staff' && <StaffExp setPage={setPage} />}
                   {page === 'resources' && <ResourcesPage setPage={setPage} />}
+                  {page === 'vote' && <VotePage setPage={setPage} />}
                   <footer className="fixed bottom-4 left-1/2 -translate-x-1/2 text-[10px] text-gray-600 font-mono z-50 pointer-events-none opacity-50">BLITZ NETWORK © {new Date().getFullYear()}</footer>
                 </React.Fragment>
               )}
