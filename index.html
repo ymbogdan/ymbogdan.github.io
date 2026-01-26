@@ -9,8 +9,9 @@
     <script type="importmap">
     {
         "imports": {
-            "react": "https://esm.sh/react@18.2.0",
-            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "react": "https://esm.sh/react@18.3.1",
+            "react-dom": "https://esm.sh/react-dom@18.3.1",
+            "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
             "lucide-react": "https://esm.sh/lucide-react@0.263.1"
         }
     }
@@ -71,7 +72,6 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
-        
     </style>
 </head>
 <body class="bg-black text-gray-200 selection:bg-purple-500/30 selection:text-white">
@@ -85,9 +85,10 @@
             Github, MessageCircle, Box, ExternalLink, Code, Database, Server, Zap, 
             ChevronDown, Rocket, Mail, User, Send, ArrowLeft, Layers, Cpu, Globe, 
             Shield, Terminal, ArrowRight, Star, MousePointer2, Users, Gamepad2, 
-            Briefcase, Copy, Check, Eye, Crown, ShieldCheck, Sword, ShoppingBag, Download, X, Hammer, ThumbsUp, Activity, CheckCircle2, AlertTriangle, AlertOctagon
+            Briefcase, Copy, Check, Eye, Crown, ShieldCheck, Sword, ShoppingBag, Download, X, Hammer, ThumbsUp, Activity, CheckCircle2, AlertTriangle, AlertOctagon,
+            Youtube
         } from 'lucide-react';
-
+        
         // --- DATA ---
         const PROJECTS = [
           {
@@ -184,7 +185,6 @@
         ];
 
         // CONFIGURAZIONE SERVIZI
-        // Rimossi servizi simulati/statici. Rimasti solo quelli con controllo reale.
         const SERVICES_CONFIG = [
             { id: 'play', name: "BlitzMC Network", type: "Minecraft Server", checkType: 'minecraft', target: "blitzmc.xyz" },
             { id: 'bot', name: "Discord Bot", type: "Bot Service", checkType: 'discord' },
@@ -284,11 +284,11 @@
             
             const bootLog = [
                 { text: `
-  ____  _ _ _          _   _      _                      _
- | __ )| (_) |_ ____  | \\ | | ___| |___      _____  _ __| | __
- |  _ \\| | | __|_  /  |  \\| |/ _ \\ __\\ \\ /\\ / / _ \\| '__| |/ /
- | |_) | | | |_ / /   | |\\  |  __/ |_ \\ V  V / (_) | |  |   <
- |____/|_|_|\\__/___|  |_| \\_|\\___|\\__| \\_/\\_/ \\___/|_|  |_|\\_\\
+ ____  _ _ _          _  _       _           _
+| __ )| (_) |_ ____  | \\ | | ___| |___     _____  _ __| | __
+|  _ \\| | | __|_  /  |  \\| |/ _ \\ __\\ \\ /\\ / / _ \\| '__| |/ /
+| |_) | | | |_ / /   | |\\  |  __/ |_ \\ V  V / (_) | |  |   <
+|____/|_|_|\\__/___|  |_| \\_|\\___|\\__| \\_/\\_/ \\___/|_|  |_|\\_\\
 `, delay: 0, highlight: true, isAscii: true },
                 { text: "Initializing BlitzKernel v6.1.0-blitz-amd64...", delay: 200 },
                 { text: "Loading initial ramdisk...", delay: 250 },
@@ -483,7 +483,6 @@
           return (
             <Wrapper {...props} ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`relative rounded-3xl ${bgStyle} border border-white/5 backdrop-blur-xl overflow-hidden group transition-all duration-300 ease-out hover:z-10 hover:border-white/20 cursor-pointer ${colSpan} ${rowSpan} ${className} will-change-transform`}>
               
-              {/* BINARY EFFECT LAYER (Background Z-0) - Spostato PRIMA del contenuto e con z-0 */}
               {isBinary && (
                   <div 
                     className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden"
@@ -492,19 +491,16 @@
                         WebkitMaskImage: `radial-gradient(150px circle at var(--x, 50%) var(--y, 50%), black, transparent 100%)`
                     }}
                   >
-                    {/* OVERSCAN */}
                     <div className="w-[120%] h-[120%] -ml-4 -mt-4 text-sm font-mono text-blue-400 break-all leading-[0.85rem] select-none tracking-tight shadow-black drop-shadow-md bg-black/40">
                         {binaryContent}
                     </div>
                   </div>
               )}
 
-              {/* DECORATIONS */}
               <div ref={spotlightRef} className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100 z-0" />
               <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
               <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
               
-              {/* CONTENT (Foreground Z-10) - Il contenuto sta sopra ai numeri binari */}
               <div className="relative h-full w-full p-6 flex flex-col z-10">{children}</div>
 
             </Wrapper>
@@ -603,7 +599,7 @@
                 <div className="bg-[#0f1115] border border-white/10 p-6 rounded-3xl max-w-md w-full shadow-2xl relative overflow-hidden animate-scale-up" onClick={e => e.stopPropagation()}>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#00D2FF]/20 blur-[60px] rounded-full pointer-events-none" />
                     
-                     <div className="grid grid-cols-2 gap-4 relative z-10 mt-2">
+                      <div className="grid grid-cols-2 gap-4 relative z-10 mt-2">
                         <button onClick={onSelectUser} className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#00D2FF]/30 transition-all group">
                             <div className="w-16 h-16 rounded-full bg-[#00D2FF]/10 flex items-center justify-center text-[#00D2FF] group-hover:scale-110 transition-transform">
                                 <User className="w-8 h-8" />
@@ -616,7 +612,7 @@
                             </div>
                             <span className="text-sm font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">Resources</span>
                         </button>
-                     </div>
+                      </div>
                 </div>
             </div>
         );
@@ -626,7 +622,7 @@
                 <div className="bg-[#0f1115] border border-white/10 p-6 rounded-3xl max-w-md w-full shadow-2xl relative overflow-hidden animate-scale-up" onClick={e => e.stopPropagation()}>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#ffba00]/20 blur-[60px] rounded-full pointer-events-none" />
                     
-                     <div className="grid grid-cols-2 gap-4 relative z-10 mt-2">
+                      <div className="grid grid-cols-2 gap-4 relative z-10 mt-2">
                         <a href="https://discord.blitzmc.xyz" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#ffba00]/30 transition-all group">
                             <div className="w-16 h-16 rounded-full bg-[#ffba00]/10 flex items-center justify-center text-[#ffba00] group-hover:scale-110 transition-transform">
                                 <MessageCircle className="w-8 h-8" />
@@ -656,61 +652,27 @@
                             <span className="text-sm font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">Status</span>
                         </button>
                         
-                        {/* TikTok Button - Full Width Below */}
-                        <a href="https://www.tiktok.com/@blitzmcnetwork" target="_blank" rel="noopener noreferrer" className="col-span-2 flex flex-row items-center justify-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#ffba00]/30 transition-all group">
-                            <div className="w-10 h-10 rounded-full bg-[#ffba00]/10 flex items-center justify-center text-[#ffba00] group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        {/* TikTok Button - Change to Vertical Stack */}
+                        <a href="https://www.tiktok.com/@blitzmcnetwork" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#ffba00]/30 transition-all group">
+                            <div className="w-16 h-16 rounded-full bg-[#ffba00]/10 flex items-center justify-center text-[#ffba00] group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
                                 </svg>
                             </div>
                             <span className="text-sm font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">TikTok</span>
                         </a>
-                     </div>
+
+                        {/* YouTube Button */}
+                        <a href="https://www.youtube.com/@BlitzMCEu" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#ffba00]/30 transition-all group">
+                            <div className="w-16 h-16 rounded-full bg-[#ffba00]/10 flex items-center justify-center text-[#ffba00] group-hover:scale-110 transition-transform">
+                                <Youtube className="w-8 h-8" />
+                            </div>
+                            <span className="text-sm font-bold text-gray-300 group-hover:text-white uppercase tracking-wider">YouTube</span>
+                        </a>
+                      </div>
                 </div>
             </div>
         );
-
-        // --- PAGES ---
-
-        const VotePage = ({ setPage }) => {
-            return (
-                <div className="min-h-screen relative z-10 flex items-center justify-center p-4 animate-fade-in-up py-20">
-                    <div className="w-full max-w-4xl">
-                        <button onClick={() => setPage('home')} className="flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors group text-sm font-mono tracking-wide">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />TORNA ALLA HOME
-                        </button>
-                        
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-white mb-2 tracking-widest font-['Orbitron']">VOTE BLITZMC</h2>
-                            <p className="text-gray-400">Vota il server ogni giorno per ottenere ricompense esclusive!</p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {VOTE_SITES.map((site) => (
-                                <a 
-                                    key={site.id} 
-                                    href={site.url} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-between bg-white/5 border border-white/10 hover:border-[#ffba00]/30 hover:bg-white/10 rounded-2xl p-4 group transition-all duration-300"
-                                >
-                                    <div className="flex items-center gap-4">
-                                        {/* Icona Sito Voto */}
-                                        <div className="w-10 h-10 rounded-lg bg-black/30 flex items-center justify-center border border-white/5 p-1">
-                                            <img src={site.icon} alt={site.name} className="w-full h-full object-contain rounded-md" />
-                                        </div>
-                                        <span className="text-base font-bold text-white group-hover:text-[#ffba00] transition-colors">{site.name}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-[#ffba00] text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
-                                        VOTA ORA <ExternalLink className="w-3 h-3" />
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            );
-        };
 
         const StatusPage = ({ setPage }) => {
             // Stato locale per gestire i ping reali
@@ -933,7 +895,7 @@
                   
                   {/* 1. Hero (2x2) */}
                   <BentoCard colSpan="md:col-span-2" rowSpan="md:row-span-2" className="flex flex-col justify-between bg-gradient-to-br from-white/5 to-transparent relative overflow-hidden" glowColor="rgba(255,255,255,0.1)">
-                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[100px] rounded-full animate-pulse-slow" />
+                      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[100px] rounded-full animate-pulse-slow" />
                     <div className="flex items-start justify-between relative z-10">
                       <div className="w-20 h-20 rounded-2xl overflow-hidden border border-white/10 bg-black/50 shadow-inner group-hover:scale-105 transition-transform duration-500 animate-float">
                           <img src="logo.png" alt="Logo" className="w-full h-full object-cover filter brightness-110" />
